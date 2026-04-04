@@ -1,5 +1,6 @@
 import { TrendingUp, Sparkles, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 type Chip = {
   label: string;
@@ -18,16 +19,21 @@ export const AiQuickChips = ({ onSend }: Props) => {
   ];
 
   return (
-    <div className="dk-chips">
-      {chips.map((c) => (
-        <button
+    <div className="flex flex-wrap gap-3 mb-8 px-1 md:px-0">
+      {chips.map((c, i) => (
+        <motion.button
           key={c.label}
-          className="dk-chip"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.1 }}
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-surface border border-border rounded-full text-[12px] font-bold tracking-tight text-muted hover:border-indigo/40 hover:text-white hover:bg-indigo/5 transition-all shadow-sm group"
           onClick={() => onSend(c.label)}
         >
-          <c.icon size={13} color="#6366f1" />
+          <c.icon className="w-3.5 h-3.5 text-indigo group-hover:animate-pulse" />
           {c.label}
-        </button>
+        </motion.button>
       ))}
     </div>
   );
