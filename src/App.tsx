@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard.tsx";
 import AddTransaction from "./pages/AddTransaction.tsx";
 import TransactionPage from "./pages/TransactionPage.tsx";
 import AiAssistant from "./pages/AiAssistant.tsx";
+import SplitBill from "./pages/SplitBill.tsx";
 import Navbar from "./components/Navbar.tsx";
 import { useState, useEffect } from "react";
 import type { Transaction } from "./types/transaction";
@@ -22,6 +23,10 @@ function App() {
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
+  const addTransaction = (data: Transaction) => {
+    setTransactions((prev) => [...prev, data]);
+  };
+
   return (
     <>
       <Navbar />
@@ -39,9 +44,7 @@ function App() {
             path="/add-transaction"
             element={
               <PageTransition>
-                <AddTransaction
-                  addTransaction={(data) => setTransactions([...transactions, data])}
-                />
+                <AddTransaction addTransaction={addTransaction} />
               </PageTransition>
             }
           />
@@ -54,11 +57,19 @@ function App() {
             }
           />
           <Route
+            path="/split-bill"
+            element={
+              <PageTransition>
+                <SplitBill addTransaction={addTransaction} />
+              </PageTransition>
+            }
+          />
+          <Route
             path="/ai-assistant"
             element={
               <PageTransition>
                 <AiAssistant
-                  addTransaction={(data) => setTransactions([...transactions, data])}
+                  addTransaction={addTransaction}
                   transactions={transactions}
                 />
               </PageTransition>

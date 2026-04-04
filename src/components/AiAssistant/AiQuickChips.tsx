@@ -20,7 +20,11 @@ export const AiQuickChips = ({ onSend }: Props) => {
   return (
     <div className="dk-chips">
       {chips.map((c) => (
-        <button key={c.label} className="dk-chip" onClick={() => onSend(c.label)}>
+        <button
+          key={c.label}
+          className="dk-chip"
+          onClick={() => onSend(c.label)}
+        >
           <c.icon size={13} color="#6366f1" />
           {c.label}
         </button>

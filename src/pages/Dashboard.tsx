@@ -1,16 +1,30 @@
-import { TrendingUp, TrendingDown, Clock, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import {
+  TrendingUp,
+  TrendingDown,
+  Clock,
+  ArrowUpRight,
+  ArrowDownRight,
+} from "lucide-react";
 import type { Transaction } from "../types/transaction";
 
 type Props = { transactions: Transaction[] };
 
 const fmt = (n: number) =>
-  new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(n);
+  new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  }).format(n);
 
 const Dashboard = ({ transactions }: Props) => {
-  const income  = transactions.filter(t => t.type === "income").reduce((s, t) => s + t.amount, 0);
-  const expense = transactions.filter(t => t.type === "expense").reduce((s, t) => s + t.amount, 0);
+  const income = transactions
+    .filter((t) => t.type === "income")
+    .reduce((s, t) => s + t.amount, 0);
+  const expense = transactions
+    .filter((t) => t.type === "expense")
+    .reduce((s, t) => s + t.amount, 0);
   const balance = income - expense;
-  const recent  = [...transactions].reverse().slice(0, 5);
+  const recent = [...transactions].reverse().slice(0, 5);
 
   return (
     <main className="dk-page" style={{ paddingTop: 8 }}>
@@ -54,7 +68,9 @@ const Dashboard = ({ transactions }: Props) => {
           <div className="dk-empty">
             <div className="dk-empty-icon">📭</div>
             <p className="dk-empty-title">Belum ada transaksi</p>
-            <p className="dk-empty-sub">Mulai catat pemasukan dan pengeluaranmu!</p>
+            <p className="dk-empty-sub">
+              Mulai catat pemasukan dan pengeluaranmu!
+            </p>
           </div>
         ) : (
           <div className="dk-tx-list">
@@ -62,18 +78,22 @@ const Dashboard = ({ transactions }: Props) => {
               <div className="dk-tx-item" key={i}>
                 <div className="dk-tx-left">
                   <div className={`dk-tx-icon ${t.type}`}>
-                    {t.type === "income"
-                      ? <ArrowUpRight color="#34d399" />
-                      : <ArrowDownRight color="#f87171" />
-                    }
+                    {t.type === "income" ? (
+                      <ArrowUpRight color="#34d399" />
+                    ) : (
+                      <ArrowDownRight color="#f87171" />
+                    )}
                   </div>
                   <div>
                     <p className="dk-tx-name">{t.name}</p>
-                    <p className="dk-tx-type">{t.type === "income" ? "Pemasukan" : "Pengeluaran"}</p>
+                    <p className="dk-tx-type">
+                      {t.type === "income" ? "Pemasukan" : "Pengeluaran"}
+                    </p>
                   </div>
                 </div>
                 <p className={`dk-tx-amount ${t.type}`}>
-                  {t.type === "income" ? "+" : "-"}{fmt(t.amount)}
+                  {t.type === "income" ? "+" : "-"}
+                  {fmt(t.amount)}
                 </p>
               </div>
             ))}

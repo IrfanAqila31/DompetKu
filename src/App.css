@@ -60,7 +60,11 @@ body::before {
   z-index: 1;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 20px 60px;
+  padding: 0 20px 100px; /* Lebar padding bawah untuk navbar mobile */
+}
+
+@media (min-width: 641px) {
+  #root { padding-bottom: 60px; }
 }
 
 /* ============================================================
@@ -100,14 +104,14 @@ body::before {
   color: var(--color-muted);
   transition: color 0.3s;
   white-space: nowrap;
-  position: relative;
-  z-index: 1;
 }
 
 .dk-nav-link:hover { color: var(--color-caption); }
 
 .dk-nav-link.active {
+  background: var(--color-indigo);
   color: white;
+  box-shadow: 0 2px 12px rgba(99,102,241,0.4);
 }
 
 .dk-nav-pill-active {

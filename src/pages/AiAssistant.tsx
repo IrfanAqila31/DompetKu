@@ -13,11 +13,14 @@ type Props = {
 const AiAssistant = ({ addTransaction, transactions }: Props) => {
   const { input, setInput, history, loading, endRef, send } = useAiAssistant(
     transactions,
-    addTransaction
+    addTransaction,
   );
 
   return (
-    <main className="dk-page" style={{ maxWidth: 700, margin: "0 auto", paddingTop: 8 }}>
+    <main
+      className="dk-page"
+      style={{ maxWidth: 700, margin: "0 auto", paddingTop: 8 }}
+    >
       {/* Header */}
       <AiHeader />
 

@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router";
-import { LayoutDashboard, Plus, History, Bot } from "lucide-react";
-import { motion } from "framer-motion";
+import { LayoutDashboard, Plus, History, Bot, Users } from "lucide-react";
 
 const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/add-transaction", label: "Tambah", icon: Plus },
   { to: "/transaction", label: "Transaksi", icon: History },
+  { to: "/split-bill", label: "Split", icon: Users },
   { to: "/ai-assistant", label: "Asisten", icon: Bot },
 ];
 
@@ -17,14 +17,11 @@ const Navbar = () => {
         {navItems.map(({ to, label, icon: Icon }) => {
           const isActive = location.pathname === to;
           return (
-            <Link key={to} to={to} className={`dk-nav-link${isActive ? " active" : ""}`}>
-              {isActive && (
-                <motion.div
-                  layoutId="active-pill"
-                  className="dk-nav-pill-active"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
+            <Link
+              key={to}
+              to={to}
+              className={`dk-nav-link${isActive ? " active" : ""}`}
+            >
               <Icon className="dk-nav-icon" />
               <span>{label}</span>
             </Link>

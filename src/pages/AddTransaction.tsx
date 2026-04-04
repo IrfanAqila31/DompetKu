@@ -3,34 +3,44 @@ import { z } from "zod";
 import { PlusCircle, MinusCircle, Send, CheckCircle } from "lucide-react";
 
 const schema = z.object({
-  name:   z.string().min(3, "Nama minimal 3 karakter"),
-  amount: z.number({ error: "Jumlah harus angka" }).positive("Jumlah harus lebih dari 0"),
-  type:   z.enum(["income", "expense"]),
+  name: z.string().min(3, "Nama minimal 3 karakter"),
+  amount: z
+    .number({ error: "Jumlah harus angka" })
+    .positive("Jumlah harus lebih dari 0"),
+  type: z.enum(["income", "expense"]),
 });
 
 type TxData = z.infer<typeof schema>;
-type Props  = { addTransaction: (d: TxData) => void };
+type Props = { addTransaction: (d: TxData) => void };
 
 const AddTransaction = ({ addTransaction }: Props) => {
-  const [name,    setName]    = useState("");
-  const [amount,  setAmount]  = useState("");
-  const [type,    setType]    = useState<"income"|"expense">("income");
-  const [errors,  setErrors]  = useState<Record<string, string[]>>({});
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [type, setType] = useState<"income" | "expense">("income");
+  const [errors, setErrors] = useState<Record<string, string[]>>({});
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const result = schema.safeParse({ name, amount: Number(amount), type });
-    if (!result.success) { setErrors(result.error.flatten().fieldErrors); return; }
+    if (!result.success) {
+      setErrors(result.error.flatten().fieldErrors);
+      return;
+    }
     setErrors({});
     addTransaction(result.data);
     setSuccess(true);
-    setName(""); setAmount(""); setType("income");
+    setName("");
+    setAmount("");
+    setType("income");
     setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
-    <main className="dk-page" style={{ maxWidth: 520, margin: "0 auto", paddingTop: 8 }}>
+    <main
+      className="dk-page"
+      style={{ maxWidth: 520, margin: "0 auto", paddingTop: 8 }}
+    >
       <div className="dk-page-header">
         <p className="dk-page-caption">Catat transaksi baru</p>
         <h1 className="dk-page-title">Tambah Transaksi</h1>
@@ -68,22 +78,32 @@ const AddTransaction = ({ addTransaction }: Props) => {
 
           {/* Name */}
           <div>
-            <label htmlFor="tx-name" className="dk-label">Nama Transaksi</label>
+            <label htmlFor="tx-name" className="dk-label">
+              Nama Transaksi
+            </label>
             <input
-              id="tx-name" type="text" className="dk-input"
+              id="tx-name"
+              type="text"
+              className="dk-input"
               placeholder="Contoh: Makan siang, Gaji, dll."
-              value={name} onChange={e => setName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             {errors.name && <p className="dk-error">⚠ {errors.name[0]}</p>}
           </div>
 
           {/* Amount */}
           <div>
-            <label htmlFor="tx-amount" className="dk-label">Jumlah (Rp)</label>
+            <label htmlFor="tx-amount" className="dk-label">
+              Jumlah (Rp)
+            </label>
             <input
-              id="tx-amount" type="number" className="dk-input"
+              id="tx-amount"
+              type="number"
+              className="dk-input"
               placeholder="50000"
-              value={amount} onChange={e => setAmount(e.target.value)}
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
             />
             {errors.amount && <p className="dk-error">⚠ {errors.amount[0]}</p>}
           </div>
