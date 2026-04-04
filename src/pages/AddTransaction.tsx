@@ -1,73 +1,98 @@
 import { useState } from "react";
+import { z } from "zod";
+import { PlusCircle, MinusCircle, Send, CheckCircle } from "lucide-react";
 
-const AddTransaction = () => {
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [type, setType] = useState("income");
+const schema = z.object({
+  name:   z.string().min(3, "Nama minimal 3 karakter"),
+  amount: z.number({ error: "Jumlah harus angka" }).positive("Jumlah harus lebih dari 0"),
+  type:   z.enum(["income", "expense"]),
+});
+
+type TxData = z.infer<typeof schema>;
+type Props  = { addTransaction: (d: TxData) => void };
+
+const AddTransaction = ({ addTransaction }: Props) => {
+  const [name,    setName]    = useState("");
+  const [amount,  setAmount]  = useState("");
+  const [type,    setType]    = useState<"income"|"expense">("income");
+  const [errors,  setErrors]  = useState<Record<string, string[]>>({});
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(name, amount, type);
+    const result = schema.safeParse({ name, amount: Number(amount), type });
+    if (!result.success) { setErrors(result.error.flatten().fieldErrors); return; }
+    setErrors({});
+    addTransaction(result.data);
+    setSuccess(true);
+    setName(""); setAmount(""); setType("income");
+    setTimeout(() => setSuccess(false), 3000);
   };
+
   return (
-    <main className="max-w-md mx-auto p-5">
-      <header>
-        <h1 className="text-2xl font-bold">Tambah Transaksi</h1>
-      </header>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-        {/* nama transaksi */}
-        <div>
-          <label htmlFor="name" className="block mb-1 font-medium">
-            Nama Transaksi
-          </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Contoh: Makan Siang"
-            className="w-full px-3 py-2 border rounded-md"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
+    <main className="dk-page" style={{ maxWidth: 520, margin: "0 auto", paddingTop: 8 }}>
+      <div className="dk-page-header">
+        <p className="dk-page-caption">Catat transaksi baru</p>
+        <h1 className="dk-page-title">Tambah Transaksi</h1>
+      </div>
 
-        {/* jumlah uang atau amout*/}
+      {success && (
+        <div className="dk-success">
+          <CheckCircle size={18} />
+          Transaksi berhasil disimpan!
+        </div>
+      )}
 
-        <div>
-          <label htmlFor="name" className="block mb-1 font-medium">
-            Jumlah Uang
-          </label>
-          <input
-            type="number"
-            id="name"
-            placeholder="Contoh: 50000"
-            className="w-full px-3 py-2 border rounded-md"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="name" className="block mb-1 font-medium">
-            Tipe Transaksi
-          </label>
-          <select
-            id="name"
-            className="w-full px-3 py-2 border rounded-md"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-          >
-            <option value="income">Pemasukan</option>
-            <option value="expense">Pengeluaran</option>
-          </select>
-        </div>
-        <footer>
-          <button
-            type="submit"
-            className="w-full px-3 py-2 border rounded-md bg-blue-500 text-white"
-          >
-            Tambah Transaksi
+      <div className="dk-card" style={{ padding: 36 }}>
+        <form className="dk-form" onSubmit={handleSubmit}>
+          {/* Type Toggle */}
+          <div>
+            <label className="dk-label">Tipe Transaksi</label>
+            <div className="dk-toggle-wrap">
+              <button
+                type="button"
+                className={`dk-toggle-btn income${type === "income" ? " active" : ""}`}
+                onClick={() => setType("income")}
+              >
+                <PlusCircle size={16} /> Pemasukan
+              </button>
+              <button
+                type="button"
+                className={`dk-toggle-btn expense${type === "expense" ? " active" : ""}`}
+                onClick={() => setType("expense")}
+              >
+                <MinusCircle size={16} /> Pengeluaran
+              </button>
+            </div>
+          </div>
+
+          {/* Name */}
+          <div>
+            <label htmlFor="tx-name" className="dk-label">Nama Transaksi</label>
+            <input
+              id="tx-name" type="text" className="dk-input"
+              placeholder="Contoh: Makan siang, Gaji, dll."
+              value={name} onChange={e => setName(e.target.value)}
+            />
+            {errors.name && <p className="dk-error">⚠ {errors.name[0]}</p>}
+          </div>
+
+          {/* Amount */}
+          <div>
+            <label htmlFor="tx-amount" className="dk-label">Jumlah (Rp)</label>
+            <input
+              id="tx-amount" type="number" className="dk-input"
+              placeholder="50000"
+              value={amount} onChange={e => setAmount(e.target.value)}
+            />
+            {errors.amount && <p className="dk-error">⚠ {errors.amount[0]}</p>}
+          </div>
+
+          <button type="submit" className="dk-submit-btn">
+            <Send size={17} /> Simpan Transaksi
           </button>
-        </footer>
-      </form>
+        </form>
+      </div>
     </main>
   );
 };
