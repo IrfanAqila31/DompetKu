@@ -21,7 +21,7 @@ const Navbar = () => {
             <Link
               key={to}
               to={to}
-              className={`relative flex items-center gap-2.5 px-5 py-2.5 rounded-full text-[13px] font-bold tracking-tight transition-all duration-300
+              className={`relative flex items-center gap-2.5 px-4 md:px-5 py-2.5 rounded-full text-[13px] font-bold tracking-tight transition-all duration-300
                 ${isActive ? "text-white" : "text-muted hover:text-white"}`}
             >
               {isActive && (
@@ -32,7 +32,7 @@ const Navbar = () => {
                 />
               )}
               <Icon className={`relative z-10 w-4 h-4 shrink-0 ${isActive ? "animate-pulse" : ""}`} />
-              <span className={`relative z-10 ${isActive ? "block" : "hidden md:block"}`}>{label}</span>
+              <span className="relative z-10 hidden md:block">{label}</span>
             </Link>
           );
         })}

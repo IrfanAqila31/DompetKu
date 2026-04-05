@@ -58,6 +58,12 @@ KEMAMPUAN:
 2. Analisis keuangan berdasarkan data.
 3. Tips hemat & keuangan. Pakai bahasa Indonesia yang ramah.
 
+ATURAN FORMAT JAWABAN:
+- JANGAN gunakan simbol markdown seperti bintang (**), garis bawah (_), atau pagar (#).
+- Jangan gunakan format list markdown (seperti "*" atau "-"). Gunakan angka biasa jika perlu (1. 2. 3.).
+- Gunakan bahasa yang mengalir dan berikan spasi antar paragraf agar rapi.
+- Jawablah dengan teks bersih tanpa kode-kode aneh.
+
 CATATAN: "rb" = ribu (x1000), "jt" = juta (x1000000).`;
 
       const res = await fetch(API_URL, {
