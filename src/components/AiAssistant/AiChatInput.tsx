@@ -17,7 +17,7 @@ export const AiChatInput = ({ input, setInput, loading, onSend }: Props) => {
       }}
     >
       <input
-        className="flex-1 bg-surface border-2 border-border/50 rounded-2xl py-4 px-5 text-sm text-white outline-none focus:border-indigo focus:ring-4 focus:ring-indigo/10 transition-all placeholder:text-muted/50 disabled:opacity-40"
+        className="flex-1 bg-surface border-2 border-border/50 rounded-2xl py-4 px-5 text-xs lg:text-sm text-white outline-none focus:border-indigo focus:ring-4 focus:ring-indigo/10 transition-all placeholder:text-muted/50 disabled:opacity-40"
         placeholder="Ketik pesan... (contoh: beli kopi 15rb)"
         value={input}
         onChange={(e) => setInput(e.target.value)}

@@ -47,7 +47,7 @@ const AiAssistant = ({ addTransaction, transactions }: Props) => {
       </div>
 
       <div className="mt-8 flex justify-center">
-        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted flex items-center gap-2">
+        <p className="text-[9px] lg:text-xs font-bold text-muted flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-indigo animate-pulse" />
           Kecerdasan Buatan Terintegrasi Langsung
         </p>

@@ -23,10 +23,10 @@ export const AiChatMessages = ({ history, loading, endRef }: Props) => {
               <div className="absolute inset-0 bg-indigo/20 rounded-[32px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               <Bot className="w-10 h-10 text-indigo relative z-10" />
             </div>
-            <h3 className="text-xl font-black text-white mb-3 tracking-tight">
+            <h3 className="text-lg font-black text-white mb-3 tracking-tight">
               Sistem AI DompetKu Aktif
             </h3>
-            <p className="text-sm text-muted max-w-[320px] leading-relaxed font-bold">
+            <p className="text-sm text-muted max-w-[320px] leading-relaxed font-medium">
               Ketik <span className="text-indigo">"beli bensin 50rb"</span> untuk log cepat, atau konsultasikan strategi anggaranmu.
             </p>
           </motion.div>
@@ -50,7 +50,7 @@ export const AiChatMessages = ({ history, loading, endRef }: Props) => {
               {m.role === "ai" ? <Bot size={20} /> : <User size={20} />}
             </div>
             <div
-              className={`max-w-[85%] px-5 py-4 rounded-[24px] text-[14px] leading-relaxed font-bold whitespace-pre-wrap shadow-xl border
+              className={`max-w-[85%] px-5 py-4 rounded-card text-[14px] leading-relaxed font-bold whitespace-pre-wrap shadow-xl border
               ${
                 m.role === "ai"
                   ? "bg-surface/50 border-border text-zinc-200 rounded-tl-none backdrop-blur-sm"
@@ -71,7 +71,7 @@ export const AiChatMessages = ({ history, loading, endRef }: Props) => {
             <div className="w-10 h-10 bg-indigo border border-indigo/50 text-white rounded-2xl flex items-center justify-center shrink-0 shadow-indigo/20">
               <Bot size={20} className="animate-pulse" />
             </div>
-            <div className="bg-surface/50 border border-border px-6 py-5 rounded-[24px] rounded-tl-none shadow-xl backdrop-blur-sm">
+            <div className="bg-surface/50 border border-border px-6 py-5 rounded-card rounded-tl-none shadow-xl backdrop-blur-sm">
               <div className="flex gap-1.5 items-center">
                 <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1 }} className="w-2 h-2 rounded-full bg-indigo" />
                 <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-2 h-2 rounded-full bg-indigo" />

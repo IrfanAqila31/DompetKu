@@ -56,20 +56,20 @@ const TransactionPage = ({ transactions }: Props) => {
               <div className="w-8 h-8 bg-indigo/10 border border-indigo/20 rounded-lg flex items-center justify-center">
                 <Filter className="w-4 h-4 text-indigo" />
               </div>
-              <p className="text-[11px] font-black tracking-[0.2em] uppercase text-indigo opacity-80">
-                Transaction Ledger
+              <p className="text-sm font-bold text-indigo opacity-80">
+                Riwayat Transaksi
               </p>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+            <h1 className="text-2xl md:text-4xl font-black tracking-tight text-white leading-tight">
               Semua Transaksi
             </h1>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="hidden md:flex flex-col items-end mr-4">
+            {/* <div className="hidden md:flex flex-col items-end mr-4">
               <span className="text-[10px] font-black uppercase tracking-widest text-muted mb-1">Total Entri</span>
               <span className="text-2xl font-black text-white">{filtered.length}</span>
-            </div>
+            </div> */}
             <div className="relative group w-full md:w-80">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted transition-colors group-focus-within:text-indigo" />
               <input
@@ -128,7 +128,7 @@ const TransactionPage = ({ transactions }: Props) => {
               >
                 <div className="flex items-center gap-5">
                   <div
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border-2 transition-transform group-hover:scale-110 duration-500 shadow-lg
+                    className={`w-10 h-10 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center shrink-0 border-2 transition-transform group-hover:scale-110 duration-500 shadow-lg
                     ${
                       t.type === "income"
                         ? "bg-green/10 border-green/20 shadow-green/5"
@@ -136,18 +136,18 @@ const TransactionPage = ({ transactions }: Props) => {
                     }`}
                   >
                     {t.type === "income" ? (
-                      <ArrowUpRight className="w-6 h-6 text-green" />
+                      <ArrowUpRight className="w-4 h-4 lg:h-6 lg:w-6 text-green" />
                     ) : (
-                      <ArrowDownRight className="w-6 h-6 text-red" />
+                      <ArrowDownRight className="w-4 h-4 lg:h-6 lg:w-6 text-red" />
                     )}
                   </div>
                   <div>
-                    <p className="text-base font-bold text-white group-hover:text-indigo transition-colors mb-1">
+                    <p className="text-sm md:text-base font-bold text-white group-hover:text-indigo transition-colors mb-1">
                       {t.name}
                     </p>
                     <div className="flex items-center gap-2">
                       <span className={`w-1.5 h-1.5 rounded-full ${t.type === "income" ? "bg-green" : "bg-red"}`} />
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">
+                      <p className="text-[7px] lg:text-xs font-bold text-muted">
                         {t.type === "income" ? "Pemasukan" : "Pengeluaran"}
                       </p>
                     </div>
@@ -155,14 +155,14 @@ const TransactionPage = ({ transactions }: Props) => {
                 </div>
                 <div className="text-right">
                   <p
-                    className={`text-xl font-black tracking-tight ${
+                    className={`text-xs md:text-base font-black tracking-tight ${
                       t.type === "income" ? "text-green" : "text-red"
                     }`}
                   >
                     {t.type === "income" ? "+" : "-"}
                     {fmt(t.amount)}
                   </p>
-                  <p className="text-[11px] text-muted font-bold mt-1 uppercase tracking-widest">Confirmed</p>
+                  <p className="text-[11px] lg:text-xs text-muted font-bold mt-1">Berhasil</p>
                 </div>
               </motion.div>
             ))}
@@ -177,7 +177,7 @@ const TransactionPage = ({ transactions }: Props) => {
             <div className="w-2 h-2 rounded-full bg-indigo animate-ping" />
             <div className="absolute inset-0 w-2 h-2 rounded-full bg-indigo" />
           </div>
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">
+          <span className="text-[10px] lg:text-xs font-bold text-muted">
             Sistem Database Terenkripsi & Sinkron
           </span>
         </div>

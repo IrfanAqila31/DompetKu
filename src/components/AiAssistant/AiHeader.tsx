@@ -11,7 +11,7 @@ export const AiHeader = () => {
           <h2 className="text-xl md:text-2xl font-black tracking-tight text-white leading-tight">
             Dompet Pintar
           </h2>
-          <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-indigo">
+          <p className="text-[10px] md:text-[12px] font-bold text-indigo">
             Asisten Keuangan Pribadi
           </p>
         </div>

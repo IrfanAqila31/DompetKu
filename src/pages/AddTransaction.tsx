@@ -63,10 +63,10 @@ const AddTransaction = ({ addTransaction }: Props) => {
       className="max-w-xl mx-auto py-4 px-0 md:px-4"
     >
       <div className="mb-10">
-        <p className="text-[11px] font-black tracking-[0.2em] uppercase text-indigo mb-2 opacity-80">
-          Financial Logging
+        <p className="text-sm font-bold text-indigo mb-2 opacity-80">
+          Catatan Dompet
         </p>
-        <h1 className="text-4xl font-black tracking-tight text-white leading-tight">
+        <h1 className="text-2xl md:text-3xl font-black tracking-tight text-white leading-tight">
           Catat Transaksi
         </h1>
       </div>
@@ -95,13 +95,13 @@ const AddTransaction = ({ addTransaction }: Props) => {
         >
           {/* Type Toggle */}
           <div>
-            <label className="block text-[11px] font-black tracking-widest uppercase text-muted mb-4">
+            <label className="block text-xs font-bold text-muted mb-4">
               Pilih Tipe Dana
             </label>
             <div className="grid grid-cols-2 gap-4">
               <button
                 type="button"
-                className={`flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 font-bold text-sm tracking-tight transition-all duration-300
+                className={`flex items-center justify-center gap-2 py-4 rounded-xl border-2 font-bold text-xs lg:text-sm tracking-tight transition-all duration-300
                   ${
                     type === "income"
                       ? "bg-green/10 border-green/40 text-green shadow-[0_0_20px_rgba(16,185,129,0.1)]"
@@ -109,11 +109,11 @@ const AddTransaction = ({ addTransaction }: Props) => {
                   }`}
                 onClick={() => setType("income")}
               >
-                <PlusCircle className="w-4.5 h-4.5" /> Pemasukan
+                <PlusCircle className="w-4 h-4 lg:h-5 lg:w-5" /> Pemasukan
               </button>
               <button
                 type="button"
-                className={`flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 font-bold text-sm tracking-tight transition-all duration-300
+                className={`flex items-center justify-center gap-2 py-4 rounded-xl border-2 font-bold text-xs lg:text-sm tracking-tight transition-all duration-300
                   ${
                     type === "expense"
                       ? "bg-red/10 border-red/40 text-red shadow-[0_0_20px_rgba(244,63,94,0.1)]"
@@ -121,7 +121,7 @@ const AddTransaction = ({ addTransaction }: Props) => {
                   }`}
                 onClick={() => setType("expense")}
               >
-                <MinusCircle className="w-4.5 h-4.5" /> Pengeluaran
+                <MinusCircle className="w-4 h-4 lg:h-5 lg:w-5" /> Pengeluaran
               </button>
             </div>
           </div>
@@ -130,7 +130,7 @@ const AddTransaction = ({ addTransaction }: Props) => {
           <div className="space-y-4">
             <label
               htmlFor="tx-name"
-              className="block text-[11px] font-black tracking-widest uppercase text-muted"
+              className="block text-xs font-bold text-muted"
             >
               Deskripsi Transaksi
             </label>
@@ -138,7 +138,7 @@ const AddTransaction = ({ addTransaction }: Props) => {
               <input
                 id="tx-name"
                 type="text"
-                className="w-full bg-surface border-2 border-border/50 rounded-xl py-4 px-5 text-sm text-white outline-none focus:border-indigo focus:ring-4 focus:ring-indigo/10 transition-all placeholder:text-muted/50"
+                className="w-full bg-surface border-2 border-border/50 rounded-xl py-4 px-5 text-xs lg:text-sm text-white outline-none focus:border-indigo focus:ring-4 focus:ring-indigo/10 transition-all placeholder:text-muted/50"
                 placeholder="Contoh: Gaji Bulanan, Kopi Pagi..."
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -156,7 +156,7 @@ const AddTransaction = ({ addTransaction }: Props) => {
           <div className="space-y-4">
             <label
               htmlFor="tx-amount"
-              className="block text-[11px] font-black tracking-widest uppercase text-muted"
+              className="block text-xs font-bold text-muted"
             >
               Nominal (IDR)
             </label>
@@ -167,7 +167,7 @@ const AddTransaction = ({ addTransaction }: Props) => {
               <input
                 id="tx-amount"
                 type="number"
-                className="w-full bg-surface border-2 border-border/50 rounded-xl py-4 pl-12 pr-12 text-lg font-black text-white outline-none focus:border-indigo focus:ring-4 focus:ring-indigo/10 transition-all placeholder:text-muted/20 tracking-tight"
+                className="w-full bg-surface border-2 border-border/50 rounded-xl py-4 pl-12 pr-12 text-sm font-black text-white outline-none focus:border-indigo focus:ring-4 focus:ring-indigo/10 transition-all placeholder:text-muted/20 tracking-tight"
                 placeholder="0"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -199,9 +199,9 @@ const AddTransaction = ({ addTransaction }: Props) => {
 
           <button
             type="submit"
-            className="w-full py-5 bg-indigo hover:bg-indigo-dark text-white border-none rounded-2xl font-black text-sm tracking-[0.1em] uppercase shadow-[0_12px_24px_-8px_rgba(99,102,241,0.5)] hover:shadow-[0_16px_32px_-8px_rgba(99,102,241,0.6)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 mt-4"
+            className="w-full py-5 bg-indigo hover:bg-indigo-dark text-white border-none rounded-2xl font-black text-xs lg:text-sm shadow-[0_12px_24px_-8px_rgba(99,102,241,0.5)] hover:shadow-[0_16px_32px_-8px_rgba(99,102,241,0.6)] hover:-translate-y-1 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 mt-4"
           >
-            <Send className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <Send className="w-4 h-4 lg:h-5 lg:w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             Konfirmasi Transaksi
           </button>
         </form>

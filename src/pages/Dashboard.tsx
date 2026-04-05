@@ -61,7 +61,7 @@ const Dashboard = ({ transactions }: Props) => {
           <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-6 shadow-xl">
             <Wallet className="w-6 h-6 text-indigo" />
           </div>
-          <p className="text-xs font-black tracking-[0.2em] uppercase text-indigo mb-3 opacity-80">
+          <p className="text-sm lg:text-base font-bold text-indigo mb-3 opacity-80">
             Total Saldo Saat Ini
           </p>
           <p className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-white mb-6 drop-shadow-sm break-all md:break-normal">
@@ -84,7 +84,7 @@ const Dashboard = ({ transactions }: Props) => {
           <div className="w-12 h-12 bg-green/10 border border-green/20 rounded-2xl flex items-center justify-center mb-5">
             <TrendingUp className="w-6 h-6 text-green" />
           </div>
-          <p className="text-xs font-bold tracking-widest uppercase text-muted mb-2">
+          <p className="text-sm font-bold text-muted mb-2">
             Pemasukan Total
           </p>
           <p className="text-lg lg:text-xl font-black text-green tracking-tighter drop-shadow-sm truncate">
@@ -97,7 +97,7 @@ const Dashboard = ({ transactions }: Props) => {
           <div className="w-12 h-12 bg-red/10 border border-red/20 rounded-2xl flex items-center justify-center mb-5">
             <TrendingDown className="w-6 h-6 text-red" />
           </div>
-          <p className="text-xs font-bold tracking-widest uppercase text-muted mb-2">
+          <p className="text-sm font-bold text-muted mb-2">
             Pengeluaran Total
           </p>
           <p className="text-lg lg:text-xl font-black text-red tracking-tighter drop-shadow-sm truncate">
@@ -109,7 +109,7 @@ const Dashboard = ({ transactions }: Props) => {
       {/* Recent Activity Section */}
       <motion.div
         variants={item}
-        className="bg-card border border-border rounded-card p-6 md:p-10 shadow-2xl"
+        className="bg-card border border-border rounded-card py-6 px-3 md:py-10 md:px-6 shadow-2xl"
       >
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
@@ -120,9 +120,9 @@ const Dashboard = ({ transactions }: Props) => {
               Aktivitas Terakhir
             </h2>
           </div>
-          <button className="text-[9px] md:text-base lg:text-lg font-bold uppercase tracking-widest text-indigo hover:text-white transition-colors">
+          {/* <button className="text-[9px] md:text-base font-bold uppercase tracking-widest text-indigo hover:text-white transition-colors">
             Lihat Semua
-          </button>
+          </button> */}
         </div>
 
         {recent.length === 0 ? (
@@ -144,7 +144,7 @@ const Dashboard = ({ transactions }: Props) => {
               >
                 <div className="flex items-center gap-4 min-w-0">
                   <div
-                    className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border transition-transform group-hover:scale-110 duration-500
+                    className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 border transition-transform group-hover:scale-110 duration-500
                     ${
                       t.type === "income"
                         ? "bg-green/10 border-green/20"
@@ -152,23 +152,23 @@ const Dashboard = ({ transactions }: Props) => {
                     }`}
                   >
                     {t.type === "income" ? (
-                      <ArrowUpRight className="w-5 h-5 text-green" />
+                      <ArrowUpRight className="w-4 h-4 text-green" />
                     ) : (
-                      <ArrowDownRight className="w-5 h-5 text-red" />
+                      <ArrowDownRight className="w-4 h-4 text-red" />
                     )}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-white group-hover:text-indigo transition-colors mb-0.5 truncate">
+                    <p className="text-sm lg:text-lg font-bold text-white group-hover:text-indigo transition-colors mb-0.5 truncate">
                       {t.name}
                     </p>
-                    <p className="text-[8px] font-black uppercase tracking-widest text-muted truncate">
+                    <p className="text-[10px] font-bold text-muted truncate">
                       {t.type === "income" ? "Pemasukan" : "Pengeluaran"}
                     </p>
                   </div>
                 </div>
                 <div className="text-right shrink-0 ml-4">
                   <p
-                    className={`text-sm md:text-base font-black tracking-tight ${
+                    className={`text-xs md:text-base font-black tracking-tight ${
                       t.type === "income" ? "text-green" : "text-red"
                     }`}
                   >
