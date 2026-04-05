@@ -147,7 +147,7 @@ const TransactionPage = ({ transactions }: Props) => {
                     </p>
                     <div className="flex items-center gap-2">
                       <span className={`w-1.5 h-1.5 rounded-full ${t.type === "income" ? "bg-green" : "bg-red"}`} />
-                      <p className="text-[7px] lg:text-xs font-bold text-muted">
+                      <p className="text-[10px] lg:text-xs font-bold text-muted">
                         {t.type === "income" ? "Pemasukan" : "Pengeluaran"}
                       </p>
                     </div>
